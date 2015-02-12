@@ -1,13 +1,14 @@
-Implementations of various algorithms for finding prime numbers, 
-to make myself learn threading and to demonstrate the sheer massive.
+Implementations of various algorithms for finding prime numbers ('primality tests'),
+to make myself learn threading and to demonstrate the sheer exponential
+improvements gained by learning some basic algorithmics.
+
+Algorithms:
+  1. NastyPrimes - brutal modular trial-division. O(n^2).
+  2. EraSieve - classic Sieve method.
+  3. FermatPrime - 
+  4. MillerRabin
+  5. 
 
 
-1. NastyPrimes - brutal iteration looking for modulus 0. O(n^2).
-2. EraSieve - classic Sieve method.
-
-
-
-
-
-FEATURES TO ADD: Real-time calculation of efficiency.
-A unified GUI allowing switching between models.
+FEATURES TO ADD: Real-time calculation and reporting of their efficiency.
+A unified GUI allowing switching between models and showing formulae.
