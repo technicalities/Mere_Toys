@@ -1,0 +1,1 @@
+An implementation of Conway's GoL with a auto bitmap reader for entering initial states.
