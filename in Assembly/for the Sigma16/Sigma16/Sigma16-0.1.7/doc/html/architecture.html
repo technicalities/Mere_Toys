@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >Sigma16 Instruction Set Architecture</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta name="generator" content="pandoc"
+     /><meta name="author" content="John T. O'Donnell"
+     /><meta name="date" content="2009"
+     /></head
+  ><body
+  ><link rel="stylesheet" href="style.css" type="text/css" media="all" /><h1 class="title"
+    >Sigma16 Instruction Set Architecture</h1
+    ><div id="toc"
+    ><ul
+      ><li
+	><a href="#instruction-set-architecture" id="TOC-instruction-set-architecture"
+	  >Instruction Set Architecture</a
+	  ><ul
+	  ><li
+	    ><a href="#instruction-formats" id="TOC-instruction-formats"
+	      >Instruction formats</a
+	      ><ul
+	      ><li
+		><a href="#rrr-instructions" id="TOC-rrr-instructions"
+		  >RRR instructions</a
+		  ></li
+		><li
+		><a href="#rx-and-x-format" id="TOC-rx-and-x-format"
+		  >RX and X format</a
+		  ></li
+		></ul
+	      ></li
+	    ></ul
+	  ></li
+	></ul
+      ></div
+    ><h1 id="instruction-set-architecture"
+    ><a href="#TOC-instruction-set-architecture"
+      >Instruction Set Architecture</a
+      ></h1
+    ><h2 id="instruction-formats"
+    ><a href="#TOC-instruction-formats"
+      >Instruction formats</a
+      ></h2
+    ><h3 id="rrr-instructions"
+    ><a href="#TOC-rrr-instructions"
+      >RRR instructions</a
+      ></h3
+    ><p
+    >An RRR instruction is represented in one 16-bit word, which has four 4-bit fields: op, d, a, b. The op field contains the operation code, which determines the specific instruction. The d field is the destination register, while the a and b fields are the source registers (source a and source b). An RRR instruction performs an operation on data in registers. It is one word, organised into four 4-bit fields:</p
+    ><ul
+    ><li
+      ><p
+	>The <em
+	  >op field</em
+	  > contains the operation code, specifying which instruction is to be executed.</p
+	></li
+      ><li
+      ><p
+	>The <em
+	  >d field</em
+	  > specifies the destination register, where the result of the operation will be loaded.</p
+	></li
+      ><li
+      ><p
+	>The <em
+	  >a field</em
+	  > specifies the register that contains the first operand</p
+	></li
+      ><li
+      ><p
+	>The <em
+	  >b field</em
+	  > specifies the register that contains the second operand</p
+	></li
+      ></ul
+    ><p
+    >Arithmetic instructions have RRR format.</p
+    ><p
+    >The following table shows the RRR instructions. For example, add R4,R8,R1 has an op field of 0 (which means this is an add instruction), a d field of 4, an a field of 8, and a b field is 1</p
+    ><table
+    ><caption
+      >RRR format instructions.</caption
+      ><tr class="header"
+      ><th align="center" style="width: 6%;"
+	>op</th
+	><th align="center" style="width: 11%;"
+	>format</th
+	><th align="center" style="width: 13%;"
+	>mnemonic</th
+	><th align="center" style="width: 13%;"
+	>operands</th
+	><th align="left" style="width: 46%;"
+	>action</th
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>0</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>add</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>R1 := R2+R3</td
+	></tr
+      ><tr class="even"
+      ><td align="center"
+	>1</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>sub</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>R1 := R2-R3</td
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>2</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>mul</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>R1 := R2*R3</td
+	></tr
+      ><tr class="even"
+      ><td align="center"
+	>3</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>div</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>R1 := R2/R3, R2 := R2 mod R3</td
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>4</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>cmplt</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>R1 := R2&lt;R3</td
+	></tr
+      ><tr class="even"
+      ><td align="center"
+	>5</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>cmpeq</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>R1 := R2=R3</td
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>6</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>cmpgt</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>R1 := R2&gt;R3</td
+	></tr
+      ><tr class="even"
+      ><td align="center"
+	>7</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>inv</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>no operation</td
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>8</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>and</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>no operation</td
+	></tr
+      ><tr class="even"
+      ><td align="center"
+	>9</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>or</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>no operation</td
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>a</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>xor</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>no operation</td
+	></tr
+      ><tr class="even"
+      ><td align="center"
+	>b</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>shiftl</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>R1 := R1 (R3shift) R2</td
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>c</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>shiftr</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>R1 := R1 (R3op) R2</td
+	></tr
+      ><tr class="even"
+      ><td align="center"
+	>d</td
+	><td align="center"
+	>RRR</td
+	><td align="center"
+	>trap</td
+	><td align="center"
+	>R1,R2,R3</td
+	><td align="left"
+	>pc := interrupt handler</td
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>e</td
+	><td align="center"
+	>XX</td
+	><td align="center"
+	>(expand to</td
+	><td align="center"
+	>XX format)</td
+	><td align="left"
+	></td
+	></tr
+      ><tr class="even"
+      ><td align="center"
+	>f</td
+	><td align="center"
+	>RX</td
+	><td align="center"
+	>(expand to</td
+	><td align="center"
+	>RX format)</td
+	><td align="left"
+	></td
+	></tr
+      ></table
+    ><h3 id="rx-and-x-format"
+    ><a href="#TOC-rx-and-x-format"
+      >RX and X format</a
+      ></h3
+    ><p
+    >An RX instruction is represented in two 16-bit words, which must appear in consecutive words in memory. The first word has four 4-bit fields: op, d, a, b. The second word is a single 16-bit field called the displacement. The op field is 15 for all RX instructions, and the b field determines the actual instruction. Thus an op of 15 means that the real opcode has been &quot;escaped&quot; to the b field. This technique is called an &quot;expanding opcode&quot;. The RX format is used for instructions that have two operands, one in a register (the R operand) and the other specified by an indexed address (the X operand). Examples are load, store, jumpf.</p
+    ><p
+    >The X format is a special case of the RX format, where there is only one operand, which is an indexed address. In the machine language, an X format instruction has a &quot;don't care&quot; value in the d field. The jump instruction has X format.</p
+    ><table
+    ><caption
+      >RX (and X) format instructions</caption
+      ><tr class="header"
+      ><th align="center" style="width: 6%;"
+	>op</th
+	><th align="center" style="width: 5%;"
+	>b</th
+	><th align="center" style="width: 11%;"
+	>format</th
+	><th align="center" style="width: 13%;"
+	>mnemonic</th
+	><th align="center" style="width: 13%;"
+	>operands</th
+	><th align="left" style="width: 41%;"
+	>action</th
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>f</td
+	><td align="center"
+	>0</td
+	><td align="center"
+	>RX</td
+	><td align="center"
+	>lea</td
+	><td align="center"
+	>Rd,x[Ra]</td
+	><td align="left"
+	>Rd := x+Ra</td
+	></tr
+      ><tr class="even"
+      ><td align="center"
+	>f</td
+	><td align="center"
+	>1</td
+	><td align="center"
+	>RX</td
+	><td align="center"
+	>load</td
+	><td align="center"
+	>Rd,x[Ra]</td
+	><td align="left"
+	>Rd := mem[x+Ra]</td
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>f</td
+	><td align="center"
+	>2</td
+	><td align="center"
+	>RX</td
+	><td align="center"
+	>store</td
+	><td align="center"
+	>Rd,x[Ra]</td
+	><td align="left"
+	>mem[x+Ra] := Rd</td
+	></tr
+      ><tr class="even"
+      ><td align="center"
+	>f</td
+	><td align="center"
+	>3</td
+	><td align="center"
+	>X</td
+	><td align="center"
+	>jump</td
+	><td align="center"
+	>x[Ra]</td
+	><td align="left"
+	>pc := x+Ra</td
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>f</td
+	><td align="center"
+	>4</td
+	><td align="center"
+	>RX</td
+	><td align="center"
+	>jumpf</td
+	><td align="center"
+	>Rd,x[Ra]</td
+	><td align="left"
+	>if Rd==0 then pc := x+Ra</td
+	></tr
+      ><tr class="even"
+      ><td align="center"
+	>f</td
+	><td align="center"
+	>5</td
+	><td align="center"
+	>RX</td
+	><td align="center"
+	>jumpt</td
+	><td align="center"
+	>Rd,x[Ra]</td
+	><td align="left"
+	>if Rd/=0 then pc := x+Ra</td
+	></tr
+      ><tr class="odd"
+      ><td align="center"
+	>f</td
+	><td align="center"
+	>6</td
+	><td align="center"
+	>RX</td
+	><td align="center"
+	>jal</td
+	><td align="center"
+	>Rd,x[Ra]</td
+	><td align="left"
+	>Rd := pc, pc := x+Ra</td
+	></tr
+      ></table
+    ></body
+  ></html
+>

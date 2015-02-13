@@ -1,0 +1,11 @@
+Sigma16: a 16-bit RISC computer architecture
+
+To get started, read the tutorial.  You can read it in a web browser
+(see the Help pages), or as a pdf document.
+
+The system contains
+  -- A specification of the machine language
+  -- A collection of example programs
+  -- An assembler that translates assembly language into machine language
+  -- A linker that combines separately assembled modules into an executable
+  -- An emulator that executes the machine language program

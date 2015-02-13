@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >Sigma16: a simple computer architecture assembler and emulator</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta name="generator" content="pandoc"
+     /><meta name="author" content="John T. O'Donnell"
+     /><meta name="date" content="2009"
+     /></head
+  ><body
+  ><link rel="stylesheet" href="style.css" type="text/css" media="all" /><h1 class="title"
+    >Sigma16: a simple computer architecture assembler and emulator</h1
+    ><div id="toc"
+    ><ul
+      ><li
+	><a href="#assembly-language" id="TOC-assembly-language"
+	  >Assembly language</a
+	  ><ul
+	  ><li
+	    ><a href="#syntax-of-assembly-language" id="TOC-syntax-of-assembly-language"
+	      >Syntax of assembly language</a
+	      ></li
+	    ><li
+	    ><a href="#statements-that-generate-code" id="TOC-statements-that-generate-code"
+	      >Statements that generate code</a
+	      ><ul
+	      ><li
+		><a href="#instructions" id="TOC-instructions"
+		  >Instructions</a
+		  ></li
+		><li
+		><a href="#data-definitions" id="TOC-data-definitions"
+		  >Data definitions</a
+		  ></li
+		></ul
+	      ></li
+	    ><li
+	    ><a href="#assembly-directives" id="TOC-assembly-directives"
+	      >Assembly directives</a
+	      ></li
+	    ><li
+	    ><a href="#object-code" id="TOC-object-code"
+	      >Object code</a
+	      ></li
+	    ></ul
+	  ></li
+	></ul
+      ></div
+    ><h1 id="assembly-language"
+    ><a href="#TOC-assembly-language"
+      >Assembly language</a
+      ></h1
+    ><h2 id="syntax-of-assembly-language"
+    ><a href="#TOC-syntax-of-assembly-language"
+      >Syntax of assembly language</a
+      ></h2
+    ><p
+    >An assembly language program is a sequence of lines of text. Each line is a complete, separate statement. There are no nested structures, such as begin-end blocks or while loops, that begin on one line and continue on to another.</p
+    ><p
+    >An assembly language statement may be entirely blank. Blank lines are useful for breaking a program up into sections of code.</p
+    ><p
+    >The semicolon character (;) starts a comment, which continues until the end of the line. Thus the assembler will ignore everything that comes after a ;. Comments may appear in the last part of a statement, or they may fill the entire line.</p
+    ><p
+    >Every statement consists of three fields. The first field must begin in the first character of a line, and the fields are separated by white space characters (spaces and/or tabs). One or more of the fields may be empty.</p
+    ><h2 id="statements-that-generate-code"
+    ><a href="#TOC-statements-that-generate-code"
+      >Statements that generate code</a
+      ></h2
+    ><p
+    >Some assembly language statements generate one or more words of code to be placed in memory. These include instructions and data definitions.</p
+    ><h3 id="instructions"
+    ><a href="#TOC-instructions"
+      >Instructions</a
+      ></h3
+    ><h3 id="data-definitions"
+    ><a href="#TOC-data-definitions"
+      >Data definitions</a
+      ></h3
+    ><p
+    ><em
+      >name</em
+      > data <em
+      >constant</em
+      ></p
+    ><p
+    >The data statement generates a word with the specified value, which may be specified as a signed decimal integer (e.g. -23) or as a 4-digit hexadecimal word (e.g. $0a4c). The <em
+      >name</em
+      > field is optional; if present, the name is equivalent to the address of the word.</p
+    ><h2 id="assembly-directives"
+    ><a href="#TOC-assembly-directives"
+      >Assembly directives</a
+      ></h2
+    ><p
+    ><label> assembly main <label> assembly <label> export <label> import</p
+    ><h2 id="object-code"
+    ><a href="#TOC-object-code"
+      >Object code</a
+      ></h2
+    ><label> object main <label> object<address>  data <constant ...> <label> external<address>
+
+
+
+<p
+    >module name address hex4 data hex4 external name hex4 relocate name hex4</p
+    ></body
+  ></html
+>

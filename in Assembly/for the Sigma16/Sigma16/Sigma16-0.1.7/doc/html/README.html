@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    >README</title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta name="generator" content="pandoc"
+     /><meta name="author" content="John T. O'Donnell"
+     /><meta name="date" content="2009"
+     /></head
+  ><body
+  ><link rel="stylesheet" href="style.css" type="text/css" media="all" /><h1 class="title"
+    >README</h1
+    ><div id="toc"
+    ><ul
+      ><li
+	><a href="#overview" id="TOC-overview"
+	  >Overview</a
+	  ></li
+	><li
+	><a href="#author" id="TOC-author"
+	  >Author</a
+	  ></li
+	><li
+	><a href="#license" id="TOC-license"
+	  >License</a
+	  ></li
+	><li
+	><a href="#installation" id="TOC-installation"
+	  >Installation</a
+	  ></li
+	><li
+	><a href="#status" id="TOC-status"
+	  >Status</a
+	  ></li
+	><li
+	><a href="#documentation" id="TOC-documentation"
+	  >Documentation</a
+	  ></li
+	><li
+	><a href="#files" id="TOC-files"
+	  >Files</a
+	  ></li
+	></ul
+      ></div
+    ><h2 id="overview"
+    ><a href="#TOC-overview"
+      >Overview</a
+      ></h2
+    ><p
+    >Just the M1 system assembler and emulator (now called Sys16). There are installation problems with having both the Hydra libraries and some executables in the same package. In particular, I want to make a folder which is The Hydra computer hardware description language</p
+    ><p
+    >The current version number appears near the top of the file Hydra.cabal.</p
+    ><p
+    >Hydra is a Computer Hardware Description Language that supports the design of digital circuits and computer architectures. Hydra includes software tools for circuit specification, simulation, and analysis, as well as support for mathematical reasoning about circuit behavior.</p
+    ><p
+    >Hydra is a domain specific language, and it is implemented by embedding in the pure functional programming language Haskell (www.haskell.org/). A familiarity with Haskell is not required in order to use Hydra to design circuits.</p
+    ><p
+    >For more information, see</p
+    ><p
+    >http:// www.dcs.gla.ac.uk/~jtod/hydra/</p
+    ><h2 id="author"
+    ><a href="#TOC-author"
+      >Author</a
+      ></h2
+    ><p
+    >John T. O'Donnell jtod@dcs.gla.ac.uk www.dcs.gla.ac.uk/~jtod/</p
+    ><h2 id="license"
+    ><a href="#TOC-license"
+      >License</a
+      ></h2
+    ><p
+    >Hydra is free software, and is distributed under the LGPL License (Lesser General Public License). See the COPYING file for the full text of the license, and http://www.gnu.org/ for a discussion of the licensing of free software.</p
+    ><h2 id="installation"
+    ><a href="#TOC-installation"
+      >Installation</a
+      ></h2
+    ><p
+    >See the INSTALL file.</p
+    ><h2 id="status"
+    ><a href="#TOC-status"
+      >Status</a
+      ></h2
+    ><p
+    >This is experimental software, and is currently under development. Some features that have appeared in past versions of Hydra are not supported in this release, although it is intended that they will be supported in the near future. In particular, the automated transformations and metaprogramming tools described in some of the research papers are not supported in this version.</p
+    ><h2 id="documentation"
+    ><a href="#TOC-documentation"
+      >Documentation</a
+      ></h2
+    ><p
+    >To get started, see doc/tutorial, which introduces the system and shows how to specify and simulate some simple circuits.</p
+    ><h2 id="files"
+    ><a href="#TOC-files"
+      >Files</a
+      ></h2
+    ><pre
+    ><code
+      >AUTHORS           -- author of the system
+COPYING           -- the GNU Lesser General Public License (LGPL)
+INSTALL           -- how to install this software
+README            -- this file
+
+HydraCHDL.cabal   -- information to enable Cabal to build the package
+Setup.hs          -- a script file for Cabal to build the package
+install.sh        -- shell script to invoke Cabal to build the package
+
+doc               -- a directory containing documentation
+doc/tutorial      -- tutorial to help you get started
+doc/manual        -- user reference manual
+
+examples          -- a directory containing examples discussed in tutorial
+
+src               -- a directory containing the software
+src/Hydra/System                -- the basic infrastructure
+src/Hydra/Test                  -- test cases for the system
+src/Hydra/Circuits              -- library of useful circuit specifications
+src/Hydra/Circuits/Word4        -- simple examples on fixed 4-bit words
+src/Hydra/Circuits/BasicBlocks  -- a library of building blocks
+src/Hydra/Circuits/Arithmetic   -- circuits for operations on integers
+</code
+      ></pre
+    ><p
+    >The following files are not part of the source, but are created by the Cabal tools in order to build the package:</p
+    ><pre
+    ><code
+      >dist              -- a directory containing object code files
+$HOME/.ghc        -- directory where ghc finds the package information
+</code
+      ></pre
+    ></body
+  ></html
+>

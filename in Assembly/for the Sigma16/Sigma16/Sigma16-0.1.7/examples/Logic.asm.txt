@@ -1,0 +1,15 @@
+;  Test bitwise logic instructions
+
+     lea   R1,$0f96[R0]
+     lea   R2,$3322[R0]
+     and   R3,R1,R2
+
+     lea   R1,$0f96[R0]
+     lea   R2,$3322[R0]
+     or    R3,R1,R2
+
+     lea   R1,$0f96[R0]
+     lea   R2,$3322[R0]
+     xor   R3,R1,R2
+
+     trap  R0,R0,R0

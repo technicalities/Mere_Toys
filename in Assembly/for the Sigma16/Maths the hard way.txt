@@ -1,0 +1,81 @@
+;	A program that finds two quantities by iterating over an array.
+
+;	Specification: "Suppose an array x of integers in memory. Elements are defined by a sequence of data statements. 
+;	There is an integer variable n, also defined by a data statement, and the array x ;	contains n elements x[0], 
+;	x[1], ..., x[n-1]. There are two other variables named possum and negcount. Write a program that will 
+;
+;	Task (i). Calculate the sum of all the elements of x that are nonnegative (>=0) and store this sum in the variable possum 
+;	Task (ii). Count the number of elements of x that are negative, and store this count in the variable negcount. 
+
+; Algorithm.  
+;	possum = 0;
+;	negcount = 0;
+;
+;	for (i=0; i<n; i++)
+;	  {  if (x[i] > 0)	
+;	         possum = possum + x[i]; 
+;            else if x[i] <0	
+;                 negcount++		}
+
+
+; Registers used
+;
+; R1 = n
+; R2 = 1 (constant for incrementing)
+; R3 = i
+; R4 = possum
+; R5 = negcount
+; R6 = terminating boolean or array element
+; R7 = sign-test boolean
+
+; Initialisation
+
+	LEA	R1,1[R0]	; R1 = 1, a constant
+	LOAD 	R2,n[R0]	; R2 = n (= 11)
+	LEA 	R3,0[R0]	; R3 = i (initially 0)
+	LOAD 	R4,possum[R0]	; R4 = possum (initially 0)
+	LEA	R5,0[R0]	; R5 = negcount (initially 0)
+
+;
+; Main clause, a For loop (i=0; i<n; i++)
+
+Loop 	CMPLT	R6,R3,R2 	; Is (i<n) ?
+	JUMPF	R6,Done[R0] 	; If not(i<n), exit loop.
+
+	 LOAD	R6,x[R3] 	; R6 = x[i]
+	 ADD	R3,R3,R1 	; i = (i + 1)
+	 CMPEQ	R7,R6,R0	; Is (x[i] = 0) ?
+	 JUMPT	R7,Loop[R0]	; If 0, goto loop start
+
+	 CMPGT	R7,R6,R0	; Is (x[i] > 0) ?
+	 JUMPF	R7,Negup[R0]	; If R7 <= 0, goto Neg section	
+	 ADD	R4,R4,R6 	; possum = possum + x[i]
+	 JUMP	Loop[R0] 	; goto loop start
+
+		
+Negup	 ADD	R5,R5,R1	; negcount++
+	 JUMP	Loop[R0]	; goto loop start
+
+
+Done 	STORE 	R4,possum[R0] 	; save R4 into possum.
+	STORE	R5,negcount[R0]	; save R5 into negcount.
+	TRAP	R0,R0,R0 	; terminate program.
+
+; Data area
+
+n 	DATA 	11	; length of array x
+x 	DATA 	3	; x[0]
+	DATA 	-6	; x[1]
+	DATA 	27 	; x[2]
+	DATA 	50 	; x[3]
+	DATA 	0	; x[4]
+ 	DATA 	-20	; x[5]
+ 	DATA 	-21	; x[6]
+ 	DATA 	19	; x[7]
+ 	DATA 	6	; x[8]
+ 	DATA 	4	; x[9]
+ 	DATA 	-10	; x[10]
+possum	DATA	0	; Sum variable.
+negcount DATA	0	; Count variable
+			
+

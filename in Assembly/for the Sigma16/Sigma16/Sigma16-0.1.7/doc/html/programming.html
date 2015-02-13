@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><title
+    ></title
+    ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta name="generator" content="pandoc"
+     /></head
+  ><body
+  ><link rel="stylesheet" href="style.css" type="text/css" media="all" /><div id="toc"
+    ><ul
+      ><li
+	><a href="#programming-in-sigma16-assembly-language" id="TOC-programming-in-sigma16-assembly-language"
+	  >Programming in Sigma16 assembly language</a
+	  ></li
+	></ul
+      ></div
+    ><h1 id="programming-in-sigma16-assembly-language"
+    ><a href="#TOC-programming-in-sigma16-assembly-language"
+      >Programming in Sigma16 assembly language</a
+      ></h1
+    ><p
+    >Words</p
+    ><p
+    >Most real computers have words with several different sizes. It is common to have 8-bit bytes, 16-bit short words, 32-bit words, and 64-bit long words, but this terminology is not universal</p
+    ><p
+    >Sigma16 has only one word size: all its words are 16 bits. They are not subdivided into smaller groupings of bits, like bytes.</p
+    ><p
+    >Memory</p
+    ><p
+    >The memory consists of a set of words which are accessed by address. Each word in the memory contains 16 bits. There are no bytes, long words, etc.</p
+    ><p
+    >The architecture uses several primitive data types:</p
+    ><ul
+    ><li
+      ><p
+	>Binary numbers, used for addresses</p
+	></li
+      ><li
+      ><p
+	>Two's complement integers</p
+	></li
+      ><li
+      ><p
+	>Booleans, represented in a word. Zero means False, any nonzero value means True.</p
+	></li
+      ><li
+      ><p
+	>Characters, represented as 16-bit unicode.</p
+	></li
+      ></ul
+    ></body
+  ></html
+>

@@ -1,0 +1,50 @@
+name:		  Sigma16
+version:	  0.1.7
+author:		  John T. O'Donnell
+copyright:	  Copyright (c) 2009 John T. O'Donnell
+license: 	  GPL
+
+synopsis:	  Assembler and emulator for a simple computer architecture
+
+description:      A simple example of a computer architecture.
+                  There is a digital circuit in the set of Hydra
+                  examples that implements this machine.
+
+category:         hardware
+stability:        experimental
+
+license-file:     LICENSE
+homepage:         http://www.dcs.gla.ac.uk/~jtod/Hydra/
+package-URL:      http://www.dcs.gla.ac.uk/~jtod/Hydra/Sigma
+maintainer:       jtod@dcs.gla.ac.uk
+
+cabal-version:    >= 1.6
+build-type:       Simple
+tested-with:      GHC
+
+data-files:       README
+                  INSTALL
+                  LICENSE
+                  Sigma16.cabal
+                  doc/html/*.css
+                  doc/html/*.html
+                  doc/html/Sigma16.cabal
+                  doc/html/figures/*.png
+                  src/datafiles/*.txt
+                  src/glade/emu.glade
+                  examples/*.asm.txt
+
+executable Sigma16
+    build-depends:    base >= 4 && <5,
+                      filepath >= 1.1 && <1.2,
+                      directory >= 1.0.0 && < 1.1,
+                      haskell98 >= 1.0.1 && <2,
+                      mtl >= 1.1 && <1.2,
+                      process >= 1.0.1.0 && <1.2,
+                      parsec >= 2.1.0.1 && <2.2,
+                      gtk >= 0.10.0 && <= 0.10.1,
+                      cairo >= 0.10.0 && <= 0.10.1,
+                      glade  >= 0.10.0 && <= 0.10.1
+
+    hs-source-dirs:   src
+    main-is:          MainGUI.hs

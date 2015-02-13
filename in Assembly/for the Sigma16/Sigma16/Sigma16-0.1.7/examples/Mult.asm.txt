@@ -1,0 +1,6 @@
+;  Illustrate multiplication
+
+     lea  R1,13[R0]
+     lea  R2,5[R0]
+     mul  R3,R1,R2
+     trap R0,R0,R0
