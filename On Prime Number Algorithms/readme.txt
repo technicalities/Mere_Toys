@@ -3,7 +3,7 @@ to make myself learn threading and to demonstrate the sheer exponential
 improvements gained by learning some basic algorithmics.
 
 Algorithms:
-  1. NastyPrimes - brutal modular trial-division. O(n^2).
+  1. NastyPrimes - brutal modular trial-division. O(n^n).
   2. EraSieve - classic Sieve method.
   3. FermatPrime - 
   4. MillerRabin
