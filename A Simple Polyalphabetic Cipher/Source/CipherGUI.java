@@ -13,8 +13,8 @@ import java.io.*;
 public class CipherGUI extends JFrame implements ActionListener
 {
 	// JComponent instance variables
-	private JPanel top, top2, bottom, middle;
-	private JButton encodeButton, decodeButton, outButton, chooserButton, questButton;
+	private JPanel topPanel, top2, bottom, middlePanel;
+	private JButton encodeButton, decodeButton, quitButton, chooserButton, questButton;
 	private JTextField keyField, messageField;
 	private JLabel keyLabel, messageLabel, nietzscheFiller, filler, filler2, filler3;
 	private JRadioButton monoRadio, vigenRadio;
@@ -26,172 +26,161 @@ public class CipherGUI extends JFrame implements ActionListener
 	private String last = "";
 	
 
-/** 	GUI constructor. adds layout manager to the frame		 */
+/******************************************************************************************************
+ * 		Constructor. Also adds layout manager to the frame		 		 
+ ******************************************************************************************************/
 	public CipherGUI()
 	{
 		this.setSize(420,320);
 		this.setTitle("Seek Ciphers!");
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation( (dim.width/2 - this.getSize().width/2), (dim.height/2 - this.getSize().height/2));
 		this.layoutComponents();
+		
+		//  Gets rid of ugly Java JFrame.
 	    this.setUndecorated(true);
 	}
 
-/** Helper method to add components to the frame	*/
+	
+/******************************************************************************************************
+ * Helper method to add components to the frame *		 
+ ******************************************************************************************************/
 	public void layoutComponents()
 	{	 
-		// top panel is padding
-		top = new JPanel();					
-		top.setBackground(Color.black);
-		this.add(top,BorderLayout.NORTH);
+		// top panel for buttons
+		topPanel = new JPanel();					
+		topPanel.setBackground(Color.black);
+		this.add(topPanel,BorderLayout.NORTH);
 
-		questButton = new JButton("?");	
-		questButton.addActionListener(this);
-		questButton.setBackground(Color.black);
-		questButton.setForeground(Color.green);
-		top.add(questButton);	
+		//  Help button.
+		questButton = formatButton("?", topPanel);	
+		//  Quit button.
+		quitButton = formatButton(" X ", topPanel);	
 		
 		
-		
-		//  middle does everything except quit button
-		middle = new JPanel();							
-		middle.setBackground(Color.black);
-		this.add(middle,BorderLayout.CENTER);		
+		//  middle does everything except buttons
+		middlePanel = new JPanel();							
+		middlePanel.setBackground(Color.black);
+		this.add(middlePanel,BorderLayout.CENTER);		
 		
 		filler = new JLabel("He said 'The limits of my language are the limits of my world.'");
 		filler.setForeground(Color.black);
-		middle.add(filler);
+		middlePanel.add(filler);
+		
+		//  The title label.
 		nietzscheFiller = new JLabel(String.format("%s", "SEEK CIPHERS!"));
-		Font mainFont = new Font(Font.SERIF, Font.BOLD, 18);
+		Font mainFont = new Font(Font.SERIF, Font.BOLD, 24);
 		nietzscheFiller.setForeground(Color.black);
 		nietzscheFiller.setFont(mainFont);
 		nietzscheFiller.setForeground(Color.green);
-		middle.add(nietzscheFiller);
+		middlePanel.add(nietzscheFiller);
+		
 		filler3 = new JLabel("He said 'The limits of my language are the limits of my world.'");
 		filler3.setForeground(Color.black);
-		middle.add(filler3);
+		middlePanel.add(filler3);
 		
+		//  Label and field for entering keyword.
 		keyLabel = new JLabel("Keyword:      ");	
 		keyLabel.setForeground(Color.green);
-		middle.add(keyLabel);	
-		keyField = new JTextField(26);			
-		keyField.setBackground(Color.black);
-		keyField.setCaretColor(Color.white);
-		keyField.setForeground(Color.green);
+		middlePanel.add(keyLabel);	
+		keyField = formatField(26, middlePanel);	
 		
-		keyField.addMouseListener(new MouseListener() 
-		{
-	    public void mouseReleased(MouseEvent e) {}
-	    public void mousePressed(MouseEvent e) {}
-	    public void mouseExited(MouseEvent e) {	keyField.setBackground(Color.black);  keyField.setForeground(Color.green);     }
-	    public void mouseEntered(MouseEvent e) { keyField.setBackground(Color.white);  keyField.setForeground(Color.black); }
-	    public void mouseClicked(MouseEvent e) {}
-	    });
-		middle.add(keyField);
-		
+		//  Label and field for entering input file name.
 		messageLabel = new JLabel("Message file : ");	
 		messageLabel.setForeground(Color.green);
-		middle.add(messageLabel);
-		messageField = new JTextField(18);				
-		messageField.setBackground(Color.black);
-		messageField.setCaretColor(Color.white);
-		messageField.setForeground(Color.green);
-		messageField.addMouseListener(new MouseListener() 
-		{
-	    public void mouseReleased(MouseEvent e) {}
-	    public void mousePressed(MouseEvent e) {}
-	    public void mouseExited(MouseEvent e) {	messageField.setBackground(Color.black);  messageField.setForeground(Color.green);     }
-	    public void mouseEntered(MouseEvent e) { messageField.setBackground(Color.white);  messageField.setForeground(Color.black); }
-	    public void mouseClicked(MouseEvent e) {}
-	    });
-		middle.add(messageField);
-		chooserButton = new JButton("Select...");
-		chooserButton.setBackground(Color.black);
-		chooserButton.setForeground(Color.green);
-		middle.add(chooserButton);
-		chooserButton.addActionListener(this);
+		middlePanel.add(messageLabel);
+		messageField = formatField(18, middlePanel);				
+		
+		// Create file chooser button.
+		chooserButton = formatButton("Select...", middlePanel);	
 		
 		filler2 = new JLabel("Whereof we cannot speak, thereof we must pass in silence.");
 		filler2.setForeground(Color.black);
-		middle.add(filler2);
+		middlePanel.add(filler2);
 		
 		//  Radio buttons to select cipher now.
-		monoRadio = new JRadioButton("Monoalphabetic", true);
-		monoRadio.setBackground(Color.black);
-		monoRadio.setForeground(Color.green);
-		monoRadio.addMouseListener(new MouseListener() 
-		{
-	    public void mouseReleased(MouseEvent e) {}
-	    public void mousePressed(MouseEvent e) {}
-	    public void mouseExited(MouseEvent e) {	monoRadio.setBackground(Color.black);  monoRadio.setForeground(Color.green);     }
-	    public void mouseEntered(MouseEvent e) { monoRadio.setBackground(Color.white);  monoRadio.setForeground(Color.black); }
-	    public void mouseClicked(MouseEvent e) {}
-	    });
-		middle.add(monoRadio);
-		
-		vigenRadio = new JRadioButton("Vigenére");
-		vigenRadio.setBackground(Color.black);
-		vigenRadio.setForeground(Color.green);
-		vigenRadio.addMouseListener(new MouseListener() 
-		{
-	    public void mouseReleased(MouseEvent e) {}
-	    public void mousePressed(MouseEvent e) {}
-	    public void mouseExited(MouseEvent e) {	vigenRadio.setBackground(Color.black);  vigenRadio.setForeground(Color.green);     }
-	    public void mouseEntered(MouseEvent e) { vigenRadio.setBackground(Color.white);  vigenRadio.setForeground(Color.black); }
-	    public void mouseClicked(MouseEvent e) {}
-	    });
-		middle.add(vigenRadio);
-		
-		
+		monoRadio = formatRadio("Mono Shift        ", middlePanel);
+		vigenRadio = formatRadio("Vigenére", middlePanel);	
 		ButtonGroup group = new ButtonGroup();
 	    group.add(monoRadio);
 	    group.add(vigenRadio);
-	    monoRadio.addActionListener(this);
-        vigenRadio.addActionListener(this);
 		
 		filler = new JLabel("Whereof we cannot speak, thereof we must pass in silence.");
 		filler.setForeground(Color.black);
-		middle.add(filler);
+		middlePanel.add(filler);
 			
 		// create mono button and add it to the middle panel
-		encodeButton = new JButton("Encode now!");	
-		encodeButton.addActionListener(this);
-		encodeButton.setBackground(Color.black);
-		encodeButton.setForeground(Color.green);
-		middle.add(encodeButton);	
+		encodeButton = formatButton("Encode now!", middlePanel);	
+
 		// create vigenere button and add it to the middle panel
-		decodeButton = new JButton("Decode now!");		
-		decodeButton.addActionListener(this);
-		decodeButton.setBackground(Color.black);
-		decodeButton.setForeground(Color.green);
-		middle.add(decodeButton);
+		decodeButton = formatButton("Decode now!", middlePanel);	
 		
-		
-		// bottom panel is for quit
+		// bottom panel is for spacing
 		bottom = new JPanel();					
 		bottom.setBackground(Color.black);
-		this.add(bottom,BorderLayout.SOUTH);
-		outButton = new JButton("X");	
-		outButton.addActionListener(this);
-		outButton.setBackground(Color.black);
-		outButton.setForeground(Color.green);
-		outButton.addMouseListener(new MouseListener() 
-		{
-	    public void mouseReleased(MouseEvent e) {}
-	    public void mousePressed(MouseEvent e) {}
-	    public void mouseExited(MouseEvent e) {	outButton.setBackground(Color.black);  outButton.setForeground(Color.green);     }
-	    public void mouseEntered(MouseEvent e) { outButton.setBackground(Color.red); outButton.setForeground(Color.white); }
-	    public void mouseClicked(MouseEvent e) {}
-	    });
-		bottom.add(outButton);	
-		
-	
+		this.add(bottom,BorderLayout.SOUTH);		
 	}
 
+
+	//  Method to define and format a JButton, 
+	//  including a caption for actionPerformed trigger.
+	private JButton formatButton(String caption, JPanel panel) 
+	{
+		JButton b = new JButton(caption);
+		b.setActionCommand(b.getText());
+		b.addActionListener(this);
+		b.setBackground(Color.black);
+		b.setForeground(Color.green);
+		panel.add(b);
+		return b;
+	}
 	
-/** Listener and reactor to buttonpress events (conditionally uses helper methods 3&4&5 below)
- * @param e the event		 */
+	//  Method to define and format a JRadioButton. 
+	private JRadioButton formatRadio(String caption, JPanel panel) 
+	{
+		JRadioButton r = new JRadioButton(caption);
+		r.addActionListener(this);
+		r.setBackground(Color.black);
+		r.setForeground(Color.green);
+		panel.add(r);
+		mouseDetail(r);
+		return r;
+	}
+	
+	//  Method to define and format a JRadioButton. 
+	private JTextField formatField(int size, JPanel panel) 
+	{
+		JTextField t = new JTextField(size);
+		t.addActionListener(this);
+		t.setBackground(Color.black);
+		t.setForeground(Color.green);
+		t.setCaretColor(Color.white);
+		panel.add(t);
+		mouseDetail(t);
+		return t;
+	}
+	
+	//  Method to add the same mouse listener decal to whatever.
+	private JComponent mouseDetail(final JComponent b)
+	{
+		MouseListener listenForB = new MouseListener() 
+		{
+		    public void mouseReleased(MouseEvent e) {}
+		    public void mousePressed(MouseEvent e) {}
+		    public void mouseExited(MouseEvent e) {	b.setBackground(Color.black);  b.setForeground(Color.green);     }
+		    public void mouseEntered(MouseEvent e) { b.setBackground(Color.white);  b.setForeground(Color.black); }
+		    public void mouseClicked(MouseEvent e) {}
+		    };			
+		b.addMouseListener(listenForB);
+		return b;
+	}
+	
+	
+	
+/******************************************************************************************************
+ * Listener and reactor to buttonpress events (conditionally uses helper methods 3&4&5 below)
+ * @param e the event		 
+ ******************************************************************************************************/
 	public void actionPerformed(ActionEvent e)
 	{			
 		if (e.getSource() == chooserButton)									//  user has pressed "Select file"
@@ -239,7 +228,7 @@ public class CipherGUI extends JFrame implements ActionListener
 				}
 		}			
 		
-		if (e.getSource() == outButton)									
+		if (e.getSource() == quitButton)									
 		{
 			Object [] options = {"I'M OUTTA HERE", "NAH, MORE COOLNESS"};
 			int choice = JOptionPane.showOptionDialog(null, "Sure?", "Stop being cool", JOptionPane.YES_NO_OPTION, 
