@@ -1,12 +1,10 @@
-* 	ASSESSED EXERCISE 2, part (a). 
+*  "Copy a block of 16 bytes of RAM from $0080 to $B680."
+*  A program that duplicates an area of RAM from a hard-coded index. It does this by 
+*  the following:
 
-* "Copy a block of 16 bytes of RAM from $0080 to $B680."
-* A program that duplicates an area of RAM from a hard-coded index. It does this by 
-* the following algorithm:
-
-* 1. Starting at $0080, fill 16 contiguous locations with arbitrary values (say the integers 1 - 16). Call this the input block.
-* 2. Starting at $B680, load and copy the values above to 16 new contiguous locations. Call this the output block.
-* 3. Test.
+*  1. Starting at $0080, fill 16 contiguous locations with arbitrary values (say the integers 1 - 16). Call this the input block.
+*  2. Starting at $B680, load and copy the values above to 16 new contiguous locations. Call this the output block.
+*  3. Test.
 
 * 	DATA DEFINITION
 * The values written into RAM are hardcoded below as 1-16..
