@@ -19,8 +19,3 @@ Loop	STAA 	LIGHTS 		; "Print" current number in A onto LEDs
 LIGHTS 	 EQU 	$1004 		; Label for the Port B data register.
 	 
 	 END
-
-* Notice that the count overflows from 1111 1111 to 0000 0000: it does not count down
-* here. Run the program using the RUN command. What happens?"
-
-	* Please see status report for answer.
