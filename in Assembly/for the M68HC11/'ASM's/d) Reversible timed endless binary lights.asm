@@ -1,10 +1,8 @@
-* 	ASSESSED EXERCISE 2, part (d). 
-
-* d)	"Using an interrupt routine, adapt the program in (c) so that when the STRA switch is
-*	thrown from up to down (1 to 0), the count goes into reverse and a message is printed
-*	out on the I/O box screen, saying 'Count reversed by user'. This message should
-*	display for a few seconds and then clear. Every time STRA is cycled (switched up,
-*	then down), the count should reverse again with the same message. "
+*  An endless count loop, outputting to device LEDs, that can be reversed.
+*  Using an interrupt routine, adapt the program in (c) so that when the STRA switch is
+*  thrown from up to down (1 to 0), the count goes into reverse. 
+*
+*  Every time STRA is cycled (switched up, then down), the count should reverse again "
 
 * A program that counts in binary lights, reversible with a switch and showing a timed help message.
 
