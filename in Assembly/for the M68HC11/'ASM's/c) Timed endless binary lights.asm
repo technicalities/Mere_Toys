@@ -1,15 +1,14 @@
-* 	ASSESSED EXERCISE 2, part (c). 
+*  "Use a delay loop implemented as a subroutine to pace the count sequence from (b) so that the numbers change 
+*  approximately once per second for the RUN command. The accuracy here does not have to be 
+*  great but each individual light pattern should remain long enough to be clearly visible to an observer."
 
-* c)	"Use a delay loop implemented as a subroutine to pace the count sequence in (b) so that the numbers change 
-* 	approximately once per second when you use the RUN command. The accuracy here does not have to be 
-* 	great but each individual light pattern should remain long enough to be clearly visible to an observer."
+*  A program that slowly cycles 8 LEDs through binary integers, about one increment per second. 
+*  It does this by the following algorithm:
 
-* A program that slowly cycles 8 LEDs through binary integers, about one increment per second. It does this by the following algorithm:
-
-* 1. In Loop, jump after each new number display.
-* 2. In another loop ('Pause'), idle for 1 second of cycles.
-* 3. Jump back to Loop.
-* 4. Repeat indefinitely.
+*  1. In Loop, jump after each new number display.
+*  2. In another loop ('Pause'), idle for 1 second of cycles.
+*  3. Jump back to Loop.
+*  4. Repeat indefinitely.
 	
 
 * 	DATA DEFINITION
